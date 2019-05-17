@@ -1,0 +1,32 @@
+<section>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Create a Post
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+
+        <button mat-raised-button color="primary" (click)="fileInput.click()">
+          <span>Imagem</span>
+          <input #fileInput type="file" name="file" id="file" (change)="uploadImage($event)" style="display:none;">
+        </button>
+        <br>
+        <br>
+
+        <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+      </div>
+      <mat-form-field>
+        <input [(ngModel)]="title" matInput placeholder="Post title">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <textarea [(ngModel)]="content" matInput placeholder="Content" rows="10"></textarea>
+      </mat-form-field>
+      <br>
+      <button [disabled]="!title || !content" mat-raised-button color="accent"
+        (click)="createPost()">{{buttonText}}</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>

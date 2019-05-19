@@ -1,6 +1,6 @@
 <section>
   <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Create a Post
@@ -14,8 +14,12 @@
         </button>
         <br>
         <br>
-
-        <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+        <div [hidden]="!uploadPercent">
+          <mat-progress-bar mode="determinate" value="{{ uploadPercent | async }}"></mat-progress-bar>
+        </div>
+        <div [hidden]="!image">
+          <img [src]="image || '//:0'">
+        </div>
       </div>
       <mat-form-field>
         <input [(ngModel)]="title" matInput placeholder="Post title">
@@ -25,7 +29,7 @@
         <textarea [(ngModel)]="content" matInput placeholder="Content" rows="10"></textarea>
       </mat-form-field>
       <br>
-      <button [disabled]="!title || !content" mat-raised-button color="accent"
+      <button [disabled]="!title || !content || !image" mat-raised-button color="accent"
         (click)="createPost()">{{buttonText}}</button>
     </mat-expansion-panel>
   </mat-accordion>

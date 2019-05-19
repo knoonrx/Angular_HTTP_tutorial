@@ -65,6 +65,7 @@ export class PostDashboardComponent implements OnInit {
     this.postService.create(data);
     this.content = '';
     this.title = '';
+    this.image = null;
 
     this.buttonText = 'Post created!';
 

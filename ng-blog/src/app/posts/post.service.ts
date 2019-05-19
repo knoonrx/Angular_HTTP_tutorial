@@ -27,8 +27,8 @@ export class PostService {
           const id: string = a.payload.doc.id;
 
           return { id, ...data }
-        })
-        )
+        })),
+        map(x => x.sort((a: Post, b: Post) => new Date(b.published.seconds * 1000).getTime() - new Date(a.published.seconds * 1000).getTime()))
       )
   }
 

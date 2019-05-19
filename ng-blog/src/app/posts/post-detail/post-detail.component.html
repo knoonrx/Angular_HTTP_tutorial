@@ -1,11 +1,43 @@
-<div *ngIf="post">
-  <h3>{{post.title}}</h3>
-  <p>posted by {{post.author}} &bull; {{ post.published.seconds * 1000  | date:'dd/MM/yyyy' }}</p>
+<div [hidden]="!editing">
 
-  <br>
-  <img [src]="post.image">
-  <br>
-  <p>
-    {{post.content}}
-  </p>
+  <mat-card *ngIf="post">
+    <mat-card-content>
+      <mat-form-field>
+        <input [(ngModel)]="post.title" matInput placeholder="Post title">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea [(ngModel)]="post.content" matInput placeholder="Content" rows="10"></textarea>
+      </mat-form-field>
+      <mat-card-actions>
+        <button mat-raised-button (click)="editing = false">cancel</button>
+        <button [disabled]="!post.title || !post.content" mat-raised-button color="accent"
+          (click)="updatePost()">Save</button>
+      </mat-card-actions>
+    </mat-card-content>
+
+  </mat-card>
+</div>
+<div [hidden]="editing">
+  <mat-card *ngIf="post">
+    <mat-card-title>
+      {{post.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      posted by {{post.author}} &bull; {{ post.published.seconds * 1000  | date:'dd/MM/yyyy' }}
+    </mat-card-subtitle>
+    <span *ngIf="post.image">
+      <img mat-card-image [src]="post.image" alt="{{post.title}}">
+    </span>
+    <mat-card-content>
+      <p> {{post.content}}</p>
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf="auth.currentUserID === post.authorId">
+      <button mat-icon-button (click)="editing = true">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="delete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>

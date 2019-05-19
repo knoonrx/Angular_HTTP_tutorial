@@ -28,7 +28,7 @@ export class PostService {
 
           return { id, ...data }
         })),
-        map(x => x.sort((a: Post, b: Post) => new Date(b.published.seconds * 1000).getTime() - new Date(a.published.seconds * 1000).getTime()))
+        map(x => x.sort((a: any, b: any) => new Date(b.published.seconds * 1000).getTime() - new Date(a.published.seconds * 1000).getTime()))
       )
   }
 

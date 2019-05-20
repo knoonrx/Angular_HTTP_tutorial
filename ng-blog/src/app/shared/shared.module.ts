@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -13,6 +15,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     RouterModule,
     FormsModule,
+    AngularEditorModule,
+    HttpClientModule,
   ],
   exports: [
     CommonModule,
@@ -20,6 +24,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     RouterModule,
     FormsModule,
+    AngularEditorModule,
+    HttpClientModule,
   ],
 })
 export class SharedModule { }

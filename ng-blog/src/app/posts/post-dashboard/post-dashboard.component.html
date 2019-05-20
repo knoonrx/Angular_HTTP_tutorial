@@ -25,9 +25,7 @@
         <input [(ngModel)]="title" matInput placeholder="Post title">
       </mat-form-field>
       <br>
-      <mat-form-field>
-        <textarea [(ngModel)]="content" matInput placeholder="Content" rows="10"></textarea>
-      </mat-form-field>
+      <angular-editor matInput [(ngModel)]="content" [config]="config"></angular-editor>
       <br>
       <button [disabled]="!title || !content || !image" mat-raised-button color="accent"
         (click)="createPost()">{{buttonText}}</button>

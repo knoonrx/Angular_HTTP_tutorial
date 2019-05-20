@@ -5,9 +5,7 @@
       <mat-form-field>
         <input [(ngModel)]="post.title" matInput placeholder="Post title">
       </mat-form-field>
-      <mat-form-field>
-        <textarea [(ngModel)]="post.content" matInput placeholder="Content" rows="10"></textarea>
-      </mat-form-field>
+      <angular-editor matInput [(ngModel)]="post.content" [config]="config"></angular-editor>
       <mat-card-actions>
         <button mat-raised-button (click)="editing = false">cancel</button>
         <button [disabled]="!post.title || !post.content" mat-raised-button color="accent"
@@ -28,9 +26,7 @@
     <span *ngIf="post.image">
       <img mat-card-image [src]="post.image" alt="{{post.title}}">
     </span>
-    <mat-card-content>
-      <p> {{post.content}}</p>
-    </mat-card-content>
+    <mat-card-content [innerHTML]="post.content"></mat-card-content>
     <mat-card-actions align="end" *ngIf="auth.currentUserID === post.authorId">
       <button mat-icon-button (click)="editing = true">
         <mat-icon>edit</mat-icon>

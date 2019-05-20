@@ -5,6 +5,7 @@ import { PostService } from './../post.service';
 import { Observable } from 'rxjs';
 import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-post-dashboard',
@@ -19,7 +20,29 @@ export class PostDashboardComponent implements OnInit {
   buttonText: string = 'Salvar';
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
-
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  }
   constructor(
     private auth: AuthService,
     private postService: PostService,
